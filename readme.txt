@@ -22,7 +22,7 @@ At the moment, this plugins creates a contact form with the shortcode `[proper_c
 
 The current, basic functionality will not change but, in a future version, WP users will be able to add custom forms with validation quickly and easily. 
 
-Get the absolute latest at the [https://github.com/joshcanhelp/proper-contact-platform](Github repo).
+Get the absolute latest at the [Github repo](https://github.com/joshcanhelp/proper-contact-form).
 
 == Screenshots ==
 
