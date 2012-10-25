@@ -4,7 +4,7 @@ Donate link:
 Tags: contact, contact form
 Requires at least: 3.0
 Tested up to: 3.4.2
-Stable tag: 0.9
+Stable tag: 0.9.1
 
 Creates a flexible, secure contact form on your WP site
 
@@ -14,11 +14,11 @@ A well-coded, secure, and (soon to be very) flexible WordPress plugin that makes
 
 At the moment, this plugins creates a contact form with the shortcode `[proper_contact_form]` that works on any page. Users have the option to:
 
-	- Choose the fields that appear
-	- Create an auto-respond email
-	- Redirect submissions to a new page (helpful for goal tracking)
-	- Store contacts in the database
-	- Over-ride field names
+- Choose the fields that appear
+- Create an auto-respond email
+- Redirect submissions to a new page (helpful for goal tracking)
+- Store contacts in the database
+- Over-ride field names
 
 The current, basic functionality will not change but, in a future version, WP users will be able to add custom forms with validation quickly and easily. 
 
@@ -44,6 +44,10 @@ Activating the Proper Contact Form plugin is just like any other plugin. If you'
 7. To add this form to any page or post, just copy/paste or type "[proper_contact_form]" into the page or post content and save. The form should appear on that page
 
 == Changelog ==
+
+= 0.9.1 =
+* Fixed wp_kses error
+* Corrected outgoing email
 
 = 0.9 =
 * First release
