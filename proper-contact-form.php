@@ -3,7 +3,7 @@
 /*
 Plugin Name: Proper Contact Form
 Description: A better contact form processor
-Version: 0.9
+Version: 0.9.1
 Author: Proper Development
 License: GPL2
 */
