@@ -1,8 +1,11 @@
 <?php
 
+if (! function_exists('proper_get_content_array')) {
 function proper_get_content_array($type = 'page') {
 	
-	$content = array();
+	$content = array(
+		'' => 'None'
+	);
 
 	$items = get_posts(array(
 		'post_type' => $type,
@@ -19,7 +22,9 @@ function proper_get_content_array($type = 'page') {
 	return $content;
 	
 }
+}
 
+if (! function_exists('proper_get_textarea_opts')) {
 function proper_get_textarea_opts($txt) {
 	
 	$opts = array();
@@ -41,7 +46,9 @@ function proper_get_textarea_opts($txt) {
 	return $opts;
 	
 }
+}
 
+if (! function_exists('proper_display_errors')) {
 function proper_display_errors($errs) {
 	$output = '
 	<div class="proper_error_box">
@@ -58,4 +65,5 @@ function proper_display_errors($errs) {
 	</div>';
 	
 	return $output;
+}
 }

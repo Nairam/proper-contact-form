@@ -1,10 +1,12 @@
 <?php 
 
 /*
-Plugin Name: Proper Contact Form
+Plugin Name: PROPER Contact Form
+Plugin URI: http://theproperweb.com/shipped/wp/proper-contact-form
 Description: A better contact form processor
-Version: 0.9.1
-Author: Proper Development
+Version: 0.9.2
+Author: PROPER Development
+Author URI: http://theproperweb.com
 License: GPL2
 */
 
@@ -29,17 +31,20 @@ function proper_contact_form($atts, $content = null) {
 	$form->set_att('id', 'proper_contact_form_' . get_the_id());
 	$form->set_att('class', array('proper_contact_form'));
 	$form->set_att('add_nonce', get_bloginfo('admin_email'));
+
+	// Add name field if selected on the settings page
+	if( proper_get_key('propercfp_name_field') ) :
+		$required = proper_get_key('propercfp_name_field') === 'req' ? true : false;
+		$form->add_input(stripslashes(proper_get_key('propercfp_label_name')), array(
+			'required' => $required,
+			'wrap_class' => isset($_SESSION['cfp_contact_errors']['contact-name']) ? array('form_field_wrap', 'error') : array('form_field_wrap')
+		), 'contact-name');
+	endif;
 	
-	// Required name field
-	$form->add_input(proper_get_key('propercfp_label_name'), array(
-	'required' => true,
-	'wrap_class' => isset($_SESSION['cfp_contact_errors']['contact-name']) ? array('form_field_wrap', 'error') : array('form_field_wrap')
-	), 'contact-name');
-	
-	// Required email field
-	if(proper_get_key('propercfp_email_field')) :
+	// Add email field if selected on the settings page
+	if( proper_get_key('propercfp_email_field') ) :
 		$required = proper_get_key('propercfp_email_field') === 'req' ? true : false;
-		$form->add_input(proper_get_key('propercfp_label_email'), array(
+		$form->add_input(stripslashes(proper_get_key('propercfp_label_email')), array(
 			'required' => $required,
 			'type' => 'email',
 			'wrap_class' => isset($_SESSION['cfp_contact_errors']['contact-email']) ? array('form_field_wrap', 'error') : array('form_field_wrap')
@@ -47,9 +52,9 @@ function proper_contact_form($atts, $content = null) {
 	endif;
 	
 	// Add phone field if selected on the settings page
-	if(proper_get_key('propercfp_phone_field')) :
+	if( proper_get_key('propercfp_phone_field') ) :
 		$required = proper_get_key('propercfp_phone_field') === 'req' ? true : false;
-		$form->add_input(proper_get_key('propercfp_label_phone'), array(
+		$form->add_input(stripslashes(proper_get_key('propercfp_label_phone')), array(
 			'required' => $required
 		), 'contact-phone');
 	endif;
@@ -60,14 +65,14 @@ function proper_contact_form($atts, $content = null) {
 		$options = proper_get_textarea_opts($reasons);
 		if (!empty($options))
 			array_unshift($options, 'Select one...');
-			$form->add_input(proper_get_key('propercfp_label_reason'), array(
+			$form->add_input(stripslashes(proper_get_key('propercfp_label_reason')), array(
 				'type' => 'select',
 				'options' => $options
 			), 'contact-reasons');
 	endif;
 	
 	// Comment field
-	$form->add_input(proper_get_key('propercfp_label_comment'), array(
+	$form->add_input(stripslashes(proper_get_key('propercfp_label_comment')), array(
 		'required' => true,
 		'type' => 'textarea',
 		'wrap_class' => isset($_SESSION['cfp_contact_errors']['question-or-comment']) ? array('form_field_wrap', 'error') : array('form_field_wrap')
@@ -128,15 +133,15 @@ function cfp_process_contact() {
 *** Contact form submission on " . get_bloginfo('name') . " (" . site_url() . ")\n\n";
 	
 	// Sanitize and validate name
-	$contact_name = sanitize_text_field(trim($_POST['contact-name']));
-	if (empty($contact_name)) 
+	$contact_name = isset($_POST['contact-name']) ? sanitize_text_field(trim($_POST['contact-name'])) : '';
+	if (proper_get_key('propercfp_email_field') === 'req' && empty($contact_name)) 
 		$_SESSION['cfp_contact_errors']['contact-name'] = 'Enter your name';
 	else 
 		$body .= "
 Name: $contact_name\n";
 	
 	// Sanitize and validate email
-	$contact_email = sanitize_email($_POST['contact-email']);
+	$contact_email = isset($_POST['contact-email']) ? sanitize_email($_POST['contact-email']) : '';
 	if (proper_get_key('propercfp_email_field') === 'req' && ! filter_var($contact_email, FILTER_VALIDATE_EMAIL) ) 
 		$_SESSION['cfp_contact_errors']['contact-email'] = 'Enter a valid email';
 	elseif (!empty($contact_email)) 
@@ -171,8 +176,7 @@ Comment/question: " . stripslashes($contact_comment) . "\n";
 	if (!empty($contact_ip)) 
 		$body .= "
 IP address: $contact_ip \r
-IP search: http://whois.domaintools.com/$contact_ip \r
-IP search: http://whatismyipaddress.com/ip/$contact_ip)\n";
+IP search: http://whatismyipaddress.com/ip/$contact_ip\n";
 	
 	// Sanitize and prepare referrer
 	$contact_referrer = sanitize_text_field($_POST['contact-referrer']);
@@ -216,7 +220,7 @@ Sent from page: ' . get_permalink(get_the_id());
 		endif;
 		
 		// Should the user get redirected?
-		if(proper_get_key('propercfp_result_url')) : 
+		if( proper_get_key('propercfp_result_url')) : 
 			$redirect_id = proper_get_key('propercfp_result_url');
 			$redirect = get_permalink($redirect_id);
 			wp_redirect($redirect);
