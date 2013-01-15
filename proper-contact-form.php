@@ -13,7 +13,7 @@ License: GPL2
 // Help functions
 require_once(WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/inc/helpers.php');
 
-function proper_contact_form($atts, $content = null) {
+function proper_contact_form($atts, $content = NULL) {
 	
 	if (isset($_SESSION['propercfp_sent']) && $_SESSION['propercfp_sent'] === 'yes') :
 		unset($_SESSION['propercfp_sent']);
@@ -34,7 +34,7 @@ function proper_contact_form($atts, $content = null) {
 
 	// Add name field if selected on the settings page
 	if( proper_get_key('propercfp_name_field') ) :
-		$required = proper_get_key('propercfp_name_field') === 'req' ? true : false;
+		$required = proper_get_key('propercfp_name_field') === 'req' ? TRUE : FALSE;
 		$form->add_input(stripslashes(proper_get_key('propercfp_label_name')), array(
 			'required' => $required,
 			'wrap_class' => isset($_SESSION['cfp_contact_errors']['contact-name']) ? array('form_field_wrap', 'error') : array('form_field_wrap')
@@ -43,7 +43,7 @@ function proper_contact_form($atts, $content = null) {
 	
 	// Add email field if selected on the settings page
 	if( proper_get_key('propercfp_email_field') ) :
-		$required = proper_get_key('propercfp_email_field') === 'req' ? true : false;
+		$required = proper_get_key('propercfp_email_field') === 'req' ? TRUE : FALSE;
 		$form->add_input(stripslashes(proper_get_key('propercfp_label_email')), array(
 			'required' => $required,
 			'type' => 'email',
@@ -53,7 +53,7 @@ function proper_contact_form($atts, $content = null) {
 	
 	// Add phone field if selected on the settings page
 	if( proper_get_key('propercfp_phone_field') ) :
-		$required = proper_get_key('propercfp_phone_field') === 'req' ? true : false;
+		$required = proper_get_key('propercfp_phone_field') === 'req' ? TRUE : FALSE;
 		$form->add_input(stripslashes(proper_get_key('propercfp_label_phone')), array(
 			'required' => $required
 		), 'contact-phone');
@@ -73,7 +73,7 @@ function proper_contact_form($atts, $content = null) {
 	
 	// Comment field
 	$form->add_input(stripslashes(proper_get_key('propercfp_label_comment')), array(
-		'required' => true,
+		'required' => TRUE,
 		'type' => 'textarea',
 		'wrap_class' => isset($_SESSION['cfp_contact_errors']['question-or-comment']) ? array('form_field_wrap', 'error') : array('form_field_wrap')
 	), 'question-or-comment');
@@ -106,7 +106,7 @@ function proper_contact_form($atts, $content = null) {
 	
 	return '
 	<div class="proper_contact_form_wrap">
-	' . $errors . $form->build_form(false) . '
+	' . $errors . $form->build_form(FALSE) . '
 	</div>';
 	
 }
@@ -134,7 +134,7 @@ function cfp_process_contact() {
 	
 	// Sanitize and validate name
 	$contact_name = isset($_POST['contact-name']) ? sanitize_text_field(trim($_POST['contact-name'])) : '';
-	if (proper_get_key('propercfp_email_field') === 'req' && empty($contact_name)) 
+	if (proper_get_key('propercfp_name_field') === 'req' && empty($contact_name))
 		$_SESSION['cfp_contact_errors']['contact-name'] = 'Enter your name';
 	else 
 		$body .= "
@@ -283,12 +283,12 @@ function proper_contact_content_type() {
   );
   $args = array(
     'labels' => $labels,
-    'public' => false,
-    'publicly_queryable' => false,
-    'show_ui' => true, 
-    'show_in_menu' => true,
+    'public' => FALSE,
+    'publicly_queryable' => FALSE,
+    'show_ui' => TRUE,
+    'show_in_menu' => TRUE,
     'has_archive' => 'string',
-    'hierarchical' => false,
+    'hierarchical' => FALSE,
 		'menu_position' => 27,
 		'menu_icon' => plugin_dir_url(__FILE__) . '/images/person.png',
     'supports' => array( 'title', 'editor', 'custom-fields')
