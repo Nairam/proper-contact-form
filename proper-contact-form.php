@@ -4,7 +4,7 @@
 Plugin Name: PROPER Contact Form
 Plugin URI: http://theproperweb.com/shipped/wp/proper-contact-form
 Description: A better contact form processor
-Version: 0.9.2
+Version: 0.9.3
 Author: PROPER Development
 Author URI: http://theproperweb.com
 License: GPL2
