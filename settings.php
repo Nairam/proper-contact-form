@@ -13,14 +13,14 @@
 
 global $plugin_options;
 $plugin_options = array(
-	array(
+	'head1' => array(
 		'Fields to show',
 		'',
 		'',
 		'title',
 		'',
 	),
-	array(
+	'propercfp_name_field' => array(
 		'Name',
 		'propercfp_name_field',
 		'Should a name field be displayed?',
@@ -32,7 +32,7 @@ $plugin_options = array(
 			'req' => 'Required'
 		),
 	),
-	array(
+	'propercfp_email_field' => array(
 		'Email address',
 		'propercfp_email_field',
 		'Should an email address field be displayed?',
@@ -44,7 +44,7 @@ $plugin_options = array(
 			'req' => 'Required'
 		),
 	),
-	array(
+	'propercfp_phone_field' => array(
 		'Phone number',
 		'propercfp_phone_field',
 		'Should a phone number field be displayed?',
@@ -56,28 +56,28 @@ $plugin_options = array(
 			'req' => 'Required'
 		),
 	),
-	array(
+	'propercfp_reason' => array(
 		'"Reason for contacting" options',
 		'propercfp_reason',
 		'You can have people choose the reason for their contact from a drop-down list. If you would like this option to appear, enter the different reasons into the text box below, each one on its own line.',
 		'textarea',
 		'',
 	),
-	array(
+	'head2' => array(
 		'Form processing options',
 		'',
 		'',
 		'title',
 		'',
 	),
-	array(
+	'propercfp_email' => array(
 		'Default contact submission email',
 		'propercfp_email',
 		'Email to use for the sender and receiver of the contact form',
 		'text',
 		get_bloginfo('admin_email')
 	),
-	array(
+	'propercfp_result_url' => array(
 		'"Thank You" URL',
 		'propercfp_result_url',
 		'Select the post-submit page for all forms submitted',
@@ -85,77 +85,132 @@ $plugin_options = array(
 		'',
 		proper_get_content_array()
 	),
-	array(
+	'propercfp_css' => array(
 		'Add styles to the site',
 		'propercfp_css',
-		'Checking this box will add styles to the form. By deafult, this is off so you can add your own styles.',
+		'Checking this box will add styles to the form. By default, this is off so you can add your own styles.',
 		'checkbox',
 		'',
 	),
-	array(
+	'propercfp_store' => array(
 		'Store submissions in the database',
 		'propercfp_store',
 		'Should the submissions be stored in the admin area? If chosen, contact form submissions will be saved in Contacts on the left (appears after this option is activated).',
 		'checkbox',
 		'',
 	),
-	array(
-		'Send email confirmation<br />to form submitter',
+	'propercfp_confirm_email' => array(
+		'Send email confirmation to form submitter',
 		'propercfp_confirm_email',
-		'Adding text here will send an email to the form submitter.',
+		'Adding text here will send an email to the form submitter. The email uses the "Text to show when form is submitted..." field below as the subject line.',
 		'textarea',
 		'',
 	),
-	array(
+	'head3' => array(
 		'Text overrides',
 		'',
 		'',
 		'title',
 		'',
 	),
-	array(
+	'propercfp_label_name' => array(
 		'Name field label',
 		'propercfp_label_name',
 		'',
 		'text',
 		'Your full name'
 	),
-	array(
+	'propercfp_label_email' => array(
 		'Email field label',
 		'propercfp_label_email',
 		'',
 		'text',
 		'Your email address'
 	),
-	array(
+	'propercfp_label_phone' => array(
 		'Phone field label<br />(if activated above)',
 		'propercfp_label_phone',
 		'',
 		'text',
 		'Your phone number'
 	),
-	array(
+	'propercfp_label_reason' => array(
 		'Reason for contacting label<br />(if activated above)',
 		'propercfp_label_reason',
 		'',
 		'text',
 		'Reason for contacting'
 	),
-	array(
+	'propercfp_label_comment' => array(
 		'Comment field label',
 		'propercfp_label_comment',
 		'',
 		'text',
 		'Question or comment'
 	),
-	array(
-		'Submit complete text<br />(if "Thank You" URL above is not set)',
-		'propercfp_label_submit',
+	'propercfp_label_submit_btn' => array(
+		'Submit button text',
+		'propercfp_label_submit_btn',
 		'',
+		'text',
+		'Submit'
+	),
+	'propercfp_label_submit' => array(
+		'Successful form submission text',
+		'propercfp_label_submit',
+		'This text is used on the page if no "Thank You" URL is set above. This is also used as the confirmation email title, if one is set to send out.',
 		'text',
 		'Thank you for your contact!'
 	),
-	
+	'head4' => array(
+		'HTML5 validation',
+		'',
+		'',
+		'title',
+		'',
+	),
+		'propercfp_html5_no_validate' => array(
+		'Use HTML5 validation',
+		'propercfp_html5_no_validate',
+		'',
+		'checkbox',
+		'yes'
+	),
+	'head5' => array (
+		'Error Messages (if not using HTML5 validation)',
+		'',
+		'',
+		'title',
+		'',
+	),
+	'propercfp_label_err_name' => array(
+		'Error message if name required and missing',
+		'propercfp_label_err_name',
+		'',
+		'text',
+		'Enter your name'
+	),
+	'propercfp_label_err_email' => array(
+		'Error message if E-mail required and missing',
+		'propercfp_label_err_email',
+		'',
+		'text',
+		'Enter a valid email'
+	),
+	'propercfp_label_err_phone' => array(
+		'Error message if phone required and missing',
+		'propercfp_label_err_phone',
+		'',
+		'text',
+		'Please enter a phone number'
+	),
+	'propercfp_label_err_no_content' => array(
+		'Error message if post content is missing',
+		'propercfp_label_err_no_content',
+		'',
+		'text',
+		'Enter your question or comment'
+	)
 );
 
 function cfp_add_admin() {
@@ -185,7 +240,7 @@ function cfp_add_admin() {
 		}
 	}
 
-	add_submenu_page('options-general.php', "Proper Contact Form Options", "Proper Contact", 'edit_themes', 'pcfp-admin', 'proper_contact_admin');
+	add_submenu_page('options-general.php', "PROPER Contact settings", "PROPER Contact", 'edit_themes', 'pcfp-admin', 'proper_contact_admin');
 
 }
 
@@ -199,26 +254,27 @@ function proper_contact_admin() {
 		?>
 	
 		<div class="wrap" id="proper-contact-options">
-			<h1>Proper Contact Form Settings</h1>
+
+			<h2>PROPER Contact Form Settings</h2>
 			
 			<?php 
 			$doc_file = WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) . '/inc/docs.html';
 			if (is_readable($doc_file)) echo file_get_contents($doc_file) 
 			?>
-		
-			<?php
-			// Show the "saved" message
-			if ( !empty($_REQUEST['saved']) ) : 
-			?>
-			
-				<div id="message" class="updated fade">
-					<p><strong>Proper Contact Form <?php echo  __('settings saved.','thematic') ?></strong></p>
+
+			<?php if ( !empty( $_REQUEST['saved'] ) ) : ?>
+				<div id="setting-error-settings_updated" class="updated settings-error">
+					<p><strong>PROPER Contact Form <?php echo  __( 'settings saved.', 'properwp' ) ?></strong></p>
 				</div>
-		
 			<?php endif ?>
-			
+
 			<form method="post">
 				<table cellpadding="0" cellspacing="0">
+					<tr>
+						<td>
+							<p><input name="save" type="submit" value="Save changes" class="button-primary"></p>
+						</td>
+					</tr>
 
 			<?php 
 			foreach ($plugin_options as $value) :
@@ -263,7 +319,7 @@ function proper_contact_admin() {
 				
 					<tr>
 						<td colspan="2" class="header">
-							<h3><?php  echo $opt_name ?></h3>
+							<h3 style="font-size: 1.6em"><?php  echo $opt_name ?></h3>
 						</td>
 					</tr>
 					
@@ -418,12 +474,6 @@ function proper_contact_admin() {
 						<p>
 							<input name="save" type="submit" value="Save changes" class="button-primary">
 							<input type="hidden" name="action" value="save" >
-							
-							<?php if (isset($propercfp_options['last-panel'])) : ?>
-							<input type="hidden" id="proper-show-panel" name="panel" value="<?php echo $propercfp_options['last-panel'] ?>" >
-							<?php else : ?>
-							<input type="hidden" id="proper-show-panel" name="panel" value="header" >
-							<?php endif; ?>
 						</p>
 						
 					</td>
