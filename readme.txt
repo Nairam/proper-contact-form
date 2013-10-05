@@ -1,16 +1,16 @@
-=== Proper Contact Form ===
+=== PROPER Contact Form ===
 Contributors: properwp, joshcanhelp
-Donate link: 
-Tags: contact, contact form
+Donate link: http://www.theproperweb.com/code/wp/proper-contact-form/
+Tags: contact, contact form, contact form widget
 Requires at least: 3.0
-Tested up to: 3.5.1
-Stable tag: 0.9.5.1
+Tested up to: 3.6
+Stable tag: 0.9.6
 
 Creates a flexible, secure contact form on your WP site
 
 == Description ==
 
-A well-coded, secure, and flexible WordPress plugin that makes creating contact (and other) forms very simple. This is meant to be a simple tool for both savvy WordPress users and seasoned WordPress developers. 
+A well-coded, secure, and flexible WordPress plugin that makes creating a contact form very simple. This is meant to be a simple tool for both both savvy and novice WordPress users alike.
 
 At the moment, this plugins creates a contact form with the shortcode `[proper_contact_form]` that works on any page. Users have the option to:
 
@@ -23,7 +23,6 @@ At the moment, this plugins creates a contact form with the shortcode `[proper_c
 Features in the works:
 
 - Additional style options
-- Complete internationalization
 - Ability to add custom fields to the form
 
 Get the absolute latest at the [Github repo](https://github.com/joshcanhelp/proper-contact-form).
@@ -49,6 +48,14 @@ Activating the Proper Contact Form plugin is just like any other plugin. If you'
 
 == Changelog ==
 
+= 0.9.6 =
+* Contact form widget
+* Math CAPTCHA
+* Added ability to block the form using the comment blacklist
+* Improved sanitization and escaping of data
+* Better and more complete internationalization
+* More standard styles for the settings page
+ 
 = 0.9.5.1 =
 * Improved field handling
 * Better security for the settings page
