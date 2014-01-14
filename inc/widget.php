@@ -64,8 +64,8 @@ class proper_contact_widget extends WP_Widget {
 		if ( ! empty( $pcf_widget_title ) )
 			echo $before_title . $pcf_widget_title . $after_title;
 
-		if ( ! empty( $pcf_widget_subtitle ) )
-			echo wpautop( stripslashes( $pcf_widget_subtitle ) );
+		if ( ! empty( $pcf_widget_subtext ) )
+			echo wpautop( stripslashes( $pcf_widget_subtext ) );
 
 		echo do_shortcode('[proper_contact_form]');
 
